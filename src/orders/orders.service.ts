@@ -29,7 +29,7 @@ export class OrdersService {
     return order;
   }
 
-  async complete(id: number, status: OrderStatus) {
+  async complete({ id, status }: { id: number; status: OrderStatus }) {
     return await this.prismaService.order.update({
       where: { id },
       data: { status },

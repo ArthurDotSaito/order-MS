@@ -22,8 +22,11 @@ export class OrdersController {
   @MessagePattern('payments')
   async payment(@Payload() message) {
     await this.ordersService.complete({
-      message.order_id, 
-      message.status === "APPROVED" ? OrderStatus.PAYED : OrderStatus.CANCELLED,
+      id: message.order_id,
+      status:
+        message.status === 'APPROVED'
+          ? OrderStatus.PAYED
+          : OrderStatus.CANCELLED,
     });
   }
 }
