@@ -28,4 +28,11 @@ export class OrdersService {
     await lastValueFrom(this.kafkaClient.emit('orders', order));
     return order;
   }
+
+  async complete(id: number, status: OrderStatus) {
+    return await this.prismaService.order.update({
+      where: { id },
+      data: { status },
+    });
+  }
 }
