@@ -25,7 +25,7 @@ export class OrdersService {
       },
     });
 
-    await lastValueFrom(this.kafkaClient.emit('orders', order);)
+    await lastValueFrom(this.kafkaClient.emit('orders', order));
     return order;
   }
 }
