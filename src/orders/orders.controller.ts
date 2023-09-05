@@ -21,7 +21,7 @@ export class OrdersController {
 
   @MessagePattern('payments')
   async payment(@Payload() message) {
-    await this.ordersService.complete({
+    return await this.ordersService.complete({
       id: message.order_id,
       status:
         message.status === 'APPROVED'
